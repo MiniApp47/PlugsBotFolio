@@ -87,9 +87,9 @@ function showFlyer(formulaKey) {
     
     // Définir les liens des flyers (À REMPLACER PAR VOS VRAIS LIENS HTTPS)
     const flyers = {
-        'basic': 'https://votre-domaine.com/assets/flyers/flyer_pack_basic.jpg',
-        'premium': 'https://votre-domaine.com/assets/flyers/flyer_pack_premium.jpg',
-        'ultra-full': 'https://votre-domaine.com/assets/flyers/flyer_pack_ultrafull.jpg',
+        'basic': 'Basic.jpeg',
+        'premium': 'Premium.JPG',
+        'ultra-full': 'Full.JPG',
         'sur-devis': 'https://votre-domaine.com/assets/flyers/flyer_sur_devis.jpg'
     };
     
