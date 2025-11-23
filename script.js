@@ -26,6 +26,56 @@ function navigateTo(pageId) {
     });
 }
 
+// --- Fonction pour lancer la vidéo dans la MiniApp ---
+function playVideoInApp(videoUrl, event) {
+    // Empêcher le lien de naviguer (si on a cliqué sur un <a>)
+    if (event) {
+        event.preventDefault();
+    }
+
+    const containerId = 'video-player-' + videoUrl.split('.')[0]; // Ex: 'video-player-Start'
+    const container = document.getElementById(containerId);
+
+    if (!container) {
+        console.error('Conteneur vidéo non trouvé pour l\'ID:', containerId);
+        window.open(videoUrl, '_blank'); // Ouvrir en nouvel onglet par sécurité
+        return;
+    }
+
+    // Contenu HTML du lecteur vidéo
+    container.innerHTML = `
+        <button class="close-video-btn" onclick="closeVideo('${containerId}')">✖️</button>
+        <video class="video-player" controls autoplay playsinline>
+            <source src="${videoUrl}" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    `;
+
+    // Afficher le conteneur
+    container.style.display = 'block';
+
+    // Optionnel: Scroller vers le lecteur pour le rendre visible
+    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// --- Fonction pour fermer la vidéo ---
+function closeVideo(containerId) {
+    const container = document.getElementById(containerId);
+
+    if (container) {
+        // 1. Trouver l'élément vidéo et l'arrêter
+        const videoElement = container.querySelector('video');
+        if (videoElement) {
+            videoElement.pause();
+            videoElement.currentTime = 0;
+        }
+
+        // 2. Cacher le conteneur et vider son contenu
+        container.style.display = 'none';
+        container.innerHTML = '';
+    }
+}
+
 // --- Fonction pour ouvrir une image en grand ---
 function openImage(imageUrl) {
     window.open(imageUrl, '_blank');

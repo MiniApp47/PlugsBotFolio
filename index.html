@@ -38,6 +38,8 @@
             margin-top: 0;
         }
 
+      
+
         p,
         ul {
             padding: 0 15px;
@@ -126,8 +128,10 @@
     background: linear-gradient(179deg, grey, #0000008c);
             border-radius: 20px;
             color: black;
-            padding: 2vh;
+            padding: 3vh;
             text-align: center;
+            font-size: 2vh;
+
         }
 
         .LinksInsta{
@@ -246,8 +250,10 @@
         .feature-block {
             margin: 0 15px 20px 15px;
             padding: 15px;
-            background-color: var(--tg-theme-secondary-bg-color);
+            background: linear-gradient(359deg, #649fff, #2f2f2ff0);
             border-radius: 10px;
+            text-align: center;
+    box-shadow: 0px 0px 10px 2px #8237d0;
         }
 
         .formula-badge {
@@ -275,6 +281,59 @@
             background-color: #e91e63;
         }
 
+        .PageFonctionnalite {
+            background: linear-gradient(180deg, #04528c, #0072ff36);
+    padding: 2vh;
+    border-radius: 20px;
+    color: black;
+}
+
+#fonctionnalite h3{
+    border-bottom: 1px solid black;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    font-size: 15px;
+    /* text-align: center; */
+    margin: auto;
+    font-family: emoji;
+    color: #50c6ff;
+        }
+
+/* Style pour le conteneur vidéo */
+.video-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            background-color: #000;
+        }
+        .video-player {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .close-video-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 1.2em;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+            z-index: 20; /* Au-dessus de la vidéo */
+        }
+
         /* VOUTCH */
         .carousel {
             display: flex;
@@ -298,12 +357,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             scroll-snap-align: start;
             cursor: pointer;
-            height: 55vh;
+            height: 65.5vh;
         }
 
         .carousel-item img {
             width: 100%;
-            height: 51vh;
+            height: 60vh;
             object-fit: cover;
             display: block;
         }
@@ -351,7 +410,7 @@
             overflow: hidden;
             background-color: var(--tg-theme-secondary-bg-color, #ffffff);
             padding: 0;
-            height: 25vh;
+            height: 30vh;
             /* Hauteur ajustée pour une meilleure lecture */
 
             /* Styles pour l'effet "Carte" */
@@ -457,10 +516,15 @@
             <img class="imgLogo" src="Logo.PNG" alt="Logo">
         </div>
 
-        <div class="navbar">
+            <!-- NAVBAR -->        
+            <div class="navbar">
             <div class="nav-link active" data-page="home">🏠 HOME</div>
             <div class="nav-link" style="margin-left: auto;" data-page="links">🔗 LINKS</div>
         </div>
+
+
+                    <!-- PAGE HOME -->        
+
 
         <div class="page active" id="home">
             <!--  <div class="TexteHome">
@@ -485,6 +549,7 @@
             </div>
 
         </div>
+            <!-- PAGE FORMULES -->        
 
         <div class="page" id="formules">
             <div class="PageFormules">
@@ -506,35 +571,70 @@
             </div>
         </div>
 
+            <!-- PAGE FONCTIONNALITE -->        
+
         <div class="page" id="fonctionnalite">
-            <h2>Nos Fonctionnalités Clés</h2>
-            <p style="padding: 0 15px; margin-bottom: 25px;">Chaque fonctionnalité est associée à l'un de nos packs.</p>
+            <div class="PageFonctionnalite">
+                <h2>Nos Fonctionnalités Clés</h2>
+                <p style="padding: 0 15px; margin-bottom: 25px;">Chaque fonctionnalité est associée à l'un de nos packs.</p>
+    
 
-            <div class="feature-block">
-                <h3>🛒 Le Panier Avancé</h3>
-                <span class="formula-badge badge-premium">PACK PREMIUM</span>
-                <p>Système de panier avancé, permettant aux utilisateurs d'ajouter/retirer des articles.</p>
-                <p>➡️ **Démonstration :** <a href="LIEN_VIDEO_PANIER_AVANCE" target="_blank"
-                        style="color: var(--tg-theme-link-color);">Regarder la vidéo</a></p>
-            </div>
+                <div class="feature-block">
+                    <h3> 👋 Message de bienvenue</h3>
+                    <span class="formula-badge badge-basic">PACK BASIC</span>
+                    <p>Intégration de visuels, boutons en ligne et utilisation stratégique des emojis pour une interface
+                        utilisateur professionnelle.</p>
+                        <p>➡️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('Start.mp4', event)" style="color: var(--tg-theme-link-color); font-weight: bold;">
+                            Regarder la vidéo
+                        </a>
+                    </p>
+                    <div id="video-player-Start" class="video-container" style="display: none; margin-top: 15px;">
+                        </div>
+                </div>
 
-            <div class="feature-block">
-                <h3>📂 Gestion Catégories/Sous-Catégories</h3>
-                <span class="formula-badge badge-basic">PACK BASIC</span>
-                <p>Structurez votre catalogue de produits sur plusieurs niveaux pour une navigation intuitive.</p>
-                <p>➡️ **Démonstration :** <a href="LIEN_VIDEO_CATEGORIES" target="_blank"
-                        style="color: var(--tg-theme-link-color);">Regarder la vidéo</a></p>
-            </div>
+                <div class="feature-block">
+                    <h3>🛒 Le Panier </h3>
+                    <span class="formula-badge badge-ultrafull">PACK ULTRA-FULL</span>
+                    <p>Système de panier avancé, permettant aux utilisateurs d'ajouter/retirer des articles.</p>
+                            <p>➡️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('Panier.mp4', event)" style="color: var(--tg-theme-link-color); font-weight: bold;">
+                                Regarder la vidéo
+                            </a>
+                        </p>
+                        <div id="video-player-Panier" class="video-container" style="display: none; margin-top: 15px;">
+                            </div>
+                </div>
+    
+                <div class="feature-block">
+                    <h3>📂 Gestion Catégories/Sous-Catégories</h3>
+                    <span class="formula-badge badge-premium">PACK PREMIUM</span>
+                    <p>Structurez votre catalogue de produits sur plusieurs niveaux pour une navigation intuitive.</p>
+                            <p>➡️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('SubCategorie.mp4', event)" style="color: var(--tg-theme-link-color); font-weight: bold;">
+                                Regarder la vidéo
+                            </a>
+                        </p>
+                        <div id="video-player-SubCategorie" class="video-container" style="display: none; margin-top: 15px;">
+                            </div>
+                </div>
 
-            <div class="feature-block">
-                <h3>✨ Design Unique & Ergonomique</h3>
-                <span class="formula-badge badge-premium">PACK PREMIUM</span>
-                <p>Intégration de visuels, boutons en ligne et utilisation stratégique des emojis pour une interface
-                    utilisateur professionnelle.</p>
-                <p>➡️ **Démonstration :** <a href="LIEN_VIDEO_DESIGN_UI" target="_blank"
-                        style="color: var(--tg-theme-link-color);">Regarder la vidéo</a></p>
+                <div class="feature-block">
+                    <h3>✨ Design Unique & Ergonomique</h3>
+                    <span class="formula-badge badge-ultrafull">PACK ULTRA-FULL</span>
+                    <p>Structurez votre catalogue de produits sur plusieurs niveaux pour une navigation intuitive.</p>
+                            <p>➡️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('#.mp4', event)" style="color: var(--tg-theme-link-color); font-weight: bold;">
+                                Regarder la vidéo
+                            </a>
+                        </p>
+                        <div id="video-player-Start" class="video-container" style="display: none; margin-top: 15px;">
+                            </div>
+                </div>
+    
+
             </div>
+           
         </div>
+
+
+            <!-- PAGE VOUTCH -->        
 
         <div class="page" id="vouch">
             <div class="PageVoutch">
@@ -548,17 +648,17 @@
                 <div class="carousel-item"
                     onclick="openImage('https://t.me/Back_PackBot')">
                     <img src="PageAllProduitBack.png" alt="Design Client 1">
-                    <div class="caption">Page avec tout les produits.</div>
+                    <div class="caption">🏷️ ALL PRODUCTS 🏷️</div>
                 </div>
                 <div class="carousel-item"
                     onclick="openImage('https://t.me/CandyKush73Bot')">
                     <img src="PageRecapOrderCandy.png" alt="Design Client 2">
-                    <div class="caption">Recapitulatif de votre commande.</div>
+                    <div class="caption">📝 COMMANDE CLIENT 📝</div>
                 </div>
                 <div class="carousel-item"
                 onclick="openImage('https://t.me/DKRIDF_Bot')">
                 <img src="PageProduitDkr.png" alt="Design Client 2">
-                <div class="caption">Page de produit avec video et prix.</div>
+                <div class="caption">Dans Produit ➜ 🎥 VIDEO/PRIX 💰 </div>
             </div>
             </div>
 <div class="ClickAffichVoutch">
@@ -575,18 +675,18 @@
     font-size: 16px;">⬆ Cliquer dessus pour les decouvrire ⬆</h3>
 </div>
 
-              <!--    <a href="https://t.me/CANDY_KUSH_BOT" target="_blank" class="bot-link-item">
+              <!--    <a href="" target="_blank" class="bot-link-item">
                 <span class="icon">🛒</span>
                 <div>
-                    <div class="bot-name">CandyKushBot</div>
+                    <div class="bot-name"></div>
                     <div class="bot-description">Boutique de produits premium.</div>
                 </div>
             </a>
 
-            <a href="https://t.me/NLSHOP_BOT" target="_blank" class="bot-link-item">
+            <a href="" target="_blank" class="bot-link-item">
                 <span class="icon">🛍️</span>
                 <div>
-                    <div class="bot-name">NLShopBot</div>
+                    <div class="bot-name"></div>
                     <div class="bot-description">Catalogue e-commerce interactif.</div>
                 </div>
             </a>
@@ -596,6 +696,7 @@
 
             </div>
            
+            <!-- PAGE LINKS -->        
 
         <div class="page" id="links">
             <div class="PageLinks">
