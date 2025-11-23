@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PlugsBotFolio - Portfolio</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        /* CSS de base et Mobile First */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--tg-theme-text-color, #1e1e1e);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            /* Empêche tout scroll horizontal non désiré */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('Fondecran.jpeg');
+            background-size: cover;
+            /* L'image couvre tout l'espace */
+            background-position: center center;
+            /* L'image est centrée */
+            background-repeat: no-repeat;
+            /* L'image ne se répète pas */
+            background-attachment: fixed;
+        }
+
+        .app-container {
+            width: 100%;
+            box-sizing: border-box;
+            /* Inclusion du padding dans la largeur */
+            padding: 0;
+        }
+
+        h2 {
+            padding: 0 15px;
+            margin-top: 0;
+        }
+
+        p,
+        ul {
+            padding: 0 15px;
+        }
+
+
+
+        .logo {
+            height: 15vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 4vh;
+        }
+
+        .imgLogo {
+            height: 20vh;
+            /* border: 1px solid wheat; */
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px 2px #3799d0;
+        }
+
+        /* Navigation (Barre d'onglets) */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 0;
+            box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(359deg, #80d8f8, #001d43);
+            border-radius: 20px;
+            width: 80%;
+            /* display: block; */
+            margin: auto;
+            border: 1px solid black;
+        }
+
+        .nav-link {
+            flex-grow: 1;
+            text-align: center;
+            padding: 10px 5px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9em;
+            white-space: nowrap;
+            color: black;
+        }
+
+        .nav-link.active {
+            color: #001c4e;
+            font-weight: 600;
+            background: linear-gradient(192deg, #001d4275, transparent);
+            border-radius: 20px;
+        }
+
+        /* Styles des pages */
+        .page {
+            display: none;
+            padding: 2vh;
+            min-height: calc(100vh - 80px);
+            /* Assure un minimum de hauteur */
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Style des boutons (Telegram style) */
+        .btn {
+            display: block;
+    margin: 20px 15px 10px 15px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--tg-theme-button-text-color, #ffffff);
+    cursor: pointer;
+        }
+
+        
+        /*  PAGE LINKS */
+
+        .PageLinks {
+            height: auto;
+    background: linear-gradient(179deg, grey, #0000008c);
+            border-radius: 20px;
+            color: black;
+            padding: 2vh;
+            text-align: center;
+        }
+
+        .LinksInsta{
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 20px;
+        }
+        .LinksWhat{
+            background-color: #25D366;
+            border-radius: 20px;
+        }
+        .LinksSignal{
+            background-color: #0047cc;
+            border-radius: 20px;
+        }
+        .LinksTele{
+            background-color: #0088cc;
+            border-radius: 20px;
+        }
+
+        .TextLinksTele{
+            color: #99cee1;
+    background: linear-gradient(181deg, black, transparent);
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-top: 5vh;
+
+        }
+
+
+        /* PAGE FORMUES */
+
+        .PageFormules {
+    height: auto;
+    background: linear-gradient(179deg, grey, #0000008c);
+    padding: 2vh;
+    border-radius: 20px;
+    color: black;
+    text-align: center;
+}
+
+.Pack{
+    display: flex;
+    height: 20vh;
+}
+.formula-item-pack {
+    /* display: flex; */
+    /* padding: 15px; */
+    margin: 0 auto;
+    background-color: var(--tg-theme-secondary-bg-color, #ffffff);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    width: 12vh;
+
+}
+
+.Basic{
+    background-image: url('Basic.JPG');
+            background-size: cover;
+            /* L'image couvre tout l'espace */
+            background-position: center center;
+            /* L'image est centrée */
+            background-repeat: no-repeat;
+}
+.Premium{
+    background-image: url('Premium.JPG');
+            background-size: cover;
+            /* L'image couvre tout l'espace */
+            background-position: center center;
+            /* L'image est centrée */
+            background-repeat: no-repeat;
+}
+.Full{
+    background-image: url('Full.JPG');
+            background-size: cover;
+            /* L'image couvre tout l'espace */
+            background-position: center center;
+            /* L'image est centrée */
+            background-repeat: no-repeat;
+}
+
+.SurDevis{
+    background-image: url('SurDevis.png');
+            background-size: cover;
+            /* L'image couvre tout l'espace */
+            background-position: center center;
+            /* L'image est centrée */
+            background-repeat: no-repeat;
+}
+
+/* FORMULES */
+.formula-item {
+            padding: 15px;
+            margin: 0 15px 10px 15px;
+/*             background-color: var(--tg-theme-secondary-bg-color, #ffffff);
+ */            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            height: 10vh;
+    margin-top: 2vh;
+        }
+
+        #flyer-display {
+            padding: 0 15px;
+            /* Assure que le flyer ne déborde pas */
+        }
+
+        /* FONCTIONNALITÉ */
+        .feature-block {
+            margin: 0 15px 20px 15px;
+            padding: 15px;
+            background-color: var(--tg-theme-secondary-bg-color);
+            border-radius: 10px;
+        }
+
+        .formula-badge {
+            /* Répétition des styles de badge */
+            display: inline-block;
+            padding: 4px 10px;
+            margin-right: 10px;
+            margin-top: 5px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge-basic {
+            background-color: #3f51b5;
+        }
+
+        .badge-premium {
+            background-color: #ff9800;
+        }
+
+        .badge-ultrafull {
+            background-color: #e91e63;
+        }
+
+        /* VOUTCH */
+        .carousel {
+            display: flex;
+            overflow-x: scroll;
+            gap: 15px;
+            padding: 10px 15px;
+            /* Padding latéral pour le scroll */
+            margin-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .carousel-item {
+            flex-shrink: 0;
+            width: 85vw;
+            /* Utilise la largeur du viewport pour un meilleur ajustement mobile */
+            max-width: 300px;
+            background-color: var(--tg-theme-secondary-bg-color, #ffffff);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: start;
+            cursor: pointer;
+            height: 55vh;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 51vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        .caption {
+            padding: 10px 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+            background-color: #80d8f8;
+    color: black;
+        }
+
+        .bot-link-item {
+            display: flex;
+    align-items: center;
+    margin: 0 15px 10px 15px;
+    text-decoration: none;
+    height: 7vh;
+    color: white;
+    justify-content: center;
+        }
+
+        .bot-link-item .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: var(--tg-theme-link-color, #007aff);
+        }
+
+        .bot-link-item .bot-name {
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .bot-link-item .bot-description {
+            font-size: 0.85em;
+            color: var(--tg-theme-hint-color);
+        }
+
+        /* Styles pour les boutons avec images de fond */
+        .btn-image {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--tg-theme-secondary-bg-color, #ffffff);
+            padding: 0;
+            height: 25vh;
+            /* Hauteur ajustée pour une meilleure lecture */
+
+            /* Styles pour l'effet "Carte" */
+            border-radius: 12px;
+            /* Coins plus arrondis */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Bordure très fine et claire */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5),
+                /* Ombre sombre en bas */
+                0 0 10px rgba(0, 0, 0, 0.2) inset;
+            /* Ombre interne subtile */
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-image-bg {
+            /* (Le reste de .btn-image-bg reste le même) */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+
+        }
+
+        .btn-image:hover .btn-image-bg {
+            filter: brightness(0.6);
+            /* Encore plus sombre au survol */
+        }
+
+        .btn-image-content {
+            position: relative;
+            z-index: 1;
+            /* Place le contenu au-dessus de l'image de fond */
+            color: var(--tg-theme-button-text-color, #ffffff);
+            /* Texte blanc par défaut */
+            font-weight: 700;
+            font-size: 1.1em;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            /* Ombre pour le texte */
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-image-content .icon {
+            margin-right: 10px;
+            font-size: 1.3em;
+        }
+
+        .btn-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi/P//P8NNB8MMEQADAAABGgC/E6NPAAAAAElFTkSuQmCC');
+            /* Ceci est un motif 2x2px de petits points clairs/transparents (texture de grain très subtile) */
+            opacity: 0.05;
+            /* Rendre l'effet très, très subtil */
+            pointer-events: none;
+            /* Assure que le pseudo-élément n'interfère pas avec le clic */
+            z-index: 5;
+            /* Au-dessus de l'image, sous le texte */
+        }
+
+        .btn-formules {
+            width: 70%;
+            display: block;
+            margin: auto;
+        }
+
+        /* Classes spécifiques pour chaque bouton avec image */
+        .bg-formules {
+            background-image: url('Formules.png');
+        }
+
+        .bg-vouch {
+            background-image: url('Voutch.png');
+        }
+
+        .bg-fonctionnalite {
+            background-image: url('Fonctionnalite.png');
+        }
+
+        .PageVoutch{
+            height: auto;
+    background: linear-gradient(360deg, grey, #0000008c);
+    padding: 2vh;
+    border-radius: 20px;
+    color: wheat;
+    text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <div class="logo">
+            <img class="imgLogo" src="Logo.PNG" alt="Logo">
+        </div>
+
+        <div class="navbar">
+            <div class="nav-link active" data-page="home">🏠 HOME</div>
+            <div class="nav-link" style="margin-left: auto;" data-page="links">🔗 LINKS</div>
+        </div>
+
+        <div class="page active" id="home">
+            <!--  <div class="TexteHome">
+                <h2>Bienvenue sur PlugsBotFolio !</h2>
+                <p style="padding: 0 15px;">Découvrez l'étendue de nos réalisations et les formules que nous proposons pour propulser votre business sur Telegram.</p>    
+
+            </div>   -->
+            <div style="padding: 15px;">
+                <button class="btn btn-image btn-formules" onclick="navigateTo('formules')">
+                    <div class="btn-image-bg bg-formules"></div>
+                </button>
+
+                <div style="display: flex; gap: 10px; margin-top: 10px;"> <button class="btn btn-image"
+                        style="flex-grow: 1; width: auto; margin: 0; padding: 0;" onclick="navigateTo('vouch')">
+                        <div class="btn-image-bg bg-vouch"></div>
+                    </button>
+                    <button class="btn btn-image" style="flex-grow: 1; width: auto; margin: 0; padding: 0;"
+                        onclick="navigateTo('fonctionnalite')">
+                        <div class="btn-image-bg bg-fonctionnalite"></div>’
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="page" id="formules">
+            <div class="PageFormules">
+                <h2> 📁 Nos Formules 📁</h2>
+                <p style="padding: 0 15px;">Cliquez sur une des formules pour afficher la formule détaillée !</p>
+    
+                <div class="Pack">
+                    <div class="formula-item-pack Basic" onclick="showFlyer('basic')"></div>
+                    <div class="formula-item-pack Premium" onclick="showFlyer('premium')"></div>
+                    <div class="formula-item-pack Full" onclick="showFlyer('ultra-full')"></div>
+    
+                </div>
+                <div class="Devis">
+                    <div class="formula-item SurDevis" onclick="showFlyer('sur-devis')"></div>
+                </div>
+    
+                <div id="flyer-display" style="margin-top: 20px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="page" id="fonctionnalite">
+            <h2>Nos Fonctionnalités Clés</h2>
+            <p style="padding: 0 15px; margin-bottom: 25px;">Chaque fonctionnalité est associée à l'un de nos packs.</p>
+
+            <div class="feature-block">
+                <h3>🛒 Le Panier Avancé</h3>
+                <span class="formula-badge badge-premium">PACK PREMIUM</span>
+                <p>Système de panier avancé, permettant aux utilisateurs d'ajouter/retirer des articles.</p>
+                <p>➡️ **Démonstration :** <a href="LIEN_VIDEO_PANIER_AVANCE" target="_blank"
+                        style="color: var(--tg-theme-link-color);">Regarder la vidéo</a></p>
+            </div>
+
+            <div class="feature-block">
+                <h3>📂 Gestion Catégories/Sous-Catégories</h3>
+                <span class="formula-badge badge-basic">PACK BASIC</span>
+                <p>Structurez votre catalogue de produits sur plusieurs niveaux pour une navigation intuitive.</p>
+                <p>➡️ **Démonstration :** <a href="LIEN_VIDEO_CATEGORIES" target="_blank"
+                        style="color: var(--tg-theme-link-color);">Regarder la vidéo</a></p>
+            </div>
+
+            <div class="feature-block">
+                <h3>✨ Design Unique & Ergonomique</h3>
+                <span class="formula-badge badge-premium">PACK PREMIUM</span>
+                <p>Intégration de visuels, boutons en ligne et utilisation stratégique des emojis pour une interface
+                    utilisateur professionnelle.</p>
+                <p>➡️ **Démonstration :** <a href="LIEN_VIDEO_DESIGN_UI" target="_blank"
+                        style="color: var(--tg-theme-link-color);">Regarder la vidéo</a></p>
+            </div>
+        </div>
+
+        <div class="page" id="vouch">
+            <div class="PageVoutch">
+
+            <h2>Nos Réalisations & Designs</h2>
+            <p style="padding: 0 15px; margin-bottom: 15px;">Faites glisser pour voir plus d'exemples de designs clients
+                !</p>
+
+            <h3 style="padding: 0 15px;">🎨 Designs Personnalisés Clients</h3>
+            <div class="carousel">
+                <div class="carousel-item"
+                    onclick="openImage('https://t.me/Back_PackBot')">
+                    <img src="PageAllProduitBack.png" alt="Design Client 1">
+                    <div class="caption">Page avec tout les produits.</div>
+                </div>
+                <div class="carousel-item"
+                    onclick="openImage('https://t.me/CandyKush73Bot')">
+                    <img src="PageRecapOrderCandy.png" alt="Design Client 2">
+                    <div class="caption">Recapitulatif de votre commande.</div>
+                </div>
+                <div class="carousel-item"
+                onclick="openImage('https://t.me/DKRIDF_Bot')">
+                <img src="PageProduitDkr.png" alt="Design Client 2">
+                <div class="caption">Page de produit avec video et prix.</div>
+            </div>
+            </div>
+<div class="ClickAffichVoutch">
+    <h3 style="width: 95%;
+    background: linear-gradient(45deg, #80d8f8, #001d4282);
+    height: 5vh;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    box-shadow: 0px 0px 10px 2px #80d8f8;
+    padding: 1vh;
+    font-size: 16px;">⬆ Cliquer dessus pour les decouvrire ⬆</h3>
+</div>
+
+              <!--    <a href="https://t.me/CANDY_KUSH_BOT" target="_blank" class="bot-link-item">
+                <span class="icon">🛒</span>
+                <div>
+                    <div class="bot-name">CandyKushBot</div>
+                    <div class="bot-description">Boutique de produits premium.</div>
+                </div>
+            </a>
+
+            <a href="https://t.me/NLSHOP_BOT" target="_blank" class="bot-link-item">
+                <span class="icon">🛍️</span>
+                <div>
+                    <div class="bot-name">NLShopBot</div>
+                    <div class="bot-description">Catalogue e-commerce interactif.</div>
+                </div>
+            </a>
+ -->
+        </div>
+
+
+            </div>
+           
+
+        <div class="page" id="links">
+            <div class="PageLinks">
+                <h2> ☎️ Contactez-nous ☎️ </h2>
+                <p style="padding: 0 15px; margin-bottom: 25px;">Prêt à donner vie à votre projet ❓ <br> Trouvez-nous ici ⬇️
+                </p>
+
+              
+<div class="LinksInsta">
+    <a href="https://instagram.com/plugsbot" target="_blank" class="bot-link-item"
+    style="text-decoration: none;">
+    <span class="icon" style="color: #E1306C; font-size: 1.5em; margin-right: 15px;">📸</span>
+    <div>
+        <div class="bot-name">𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦</div>
+        <div class="bot-description">Suivez nos dernières réalisations et news</div>
+    </div>
+</a>
+</div>
+<div class="LinksWhat">
+    <a href="https://wa.me/33753188589" target="_blank" class="bot-link-item"
+    style="text-decoration: none;">
+    <span class="icon">🦜</span>
+    <div>
+        <div class="bot-name"> 𝑾𝒉𝒂𝒕𝒔𝑨pp </div>
+        <div class="bot-description">Contact rapide pour un devis ou support</div>
+    </div>
+</a>
+</div>
+            
+                <div class="LinksSignal">
+                    <a href="https://signal.me/#eu/plY286FIcurKHsF4x2sbSJRFrtOHZ0HsqvFGBQsLuZTQK0U5RP5JaocqzcWX7YPj" target="_blank" class="bot-link-item"
+                    style="text-decoration: none;">
+                    <span class="icon">🌍</span>
+                    <div>
+                        <div class="bot-name">  Signal </div>
+                        <div class="bot-description">Contact rapide pour un devis ou support</div>
+                    </div>
+                </a>
+                </div>
+
+                <div class="TextLinksTele">  
+                    <p>
+                        🙋‍♂️ POUR TOUTES AUTRES DEMANDES 🙋‍♂️ 
+                    </p>
+                </div>
+            
+                <div class="LinksTele">
+                    <a href="https://t.me/PlugsBotofficiel"  target="_blank" class="btn"
+                    style="text-decoration: none; margin-bottom: 25px;">
+                    💬 Démarrer une discussion sur Telegram
+                </a>
+                </div>
+            
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
