@@ -87,10 +87,10 @@ function showFlyer(formulaKey) {
     
     // Définir les liens des flyers (À REMPLACER PAR VOS VRAIS LIENS HTTPS)
     const flyers = {
-        'basic': 'FormuleBasic.JPG',
-        'premium': 'FormulePremium.JPG',
-        'ultra-full': 'FomuleUltra.JPG',
-        'sur-devis': 'FormuleSurDevis.JPG'
+        'basic': 'FormuleBasic.jpg',
+        'premium': 'FormulePremium.jpg',
+        'ultra-full': 'FomuleUltra.jpg',
+        'sur-devis': 'FormuleSurDevis.jpg'
     };
 
     // Définir les liens des images secondaires/détails (À AJOUTER)
