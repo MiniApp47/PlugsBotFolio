@@ -87,31 +87,62 @@ function showFlyer(formulaKey) {
     
     // Définir les liens des flyers (À REMPLACER PAR VOS VRAIS LIENS HTTPS)
     const flyers = {
-        'basic': 'Basic.jpeg',
-        'premium': 'Premium.JPG',
-        'ultra-full': 'Full.JPG',
-        'sur-devis': 'https://votre-domaine.com/assets/flyers/flyer_sur_devis.jpg'
+        'basic': 'FormuleBasic.JPG',
+        'premium': 'FormulePremium.JPG',
+        'ultra-full': 'FomuleUltra.JPG',
+        'sur-devis': 'FormuleSurDevis.JPG'
+    };
+
+    // Définir les liens des images secondaires/détails (À AJOUTER)
+    // IMPORTANT : Si vous n'avez pas de deuxième image pour une formule, utilisez null ou une chaîne vide.
+    const details = {
+        'basic': 'DetailBasic.jpg', // Remplacer par le lien de la deuxième image BASIC
+        'premium': 'DetailPremium.jpg', // Remplacer par le lien de la deuxième image PREMIUM
+        'ultra-full': 'DetailUltra.jpg', // Remplacer par le lien de la deuxième image ULTRA
+        'sur-devis': 'DetailSurDevis.jpg' // Pas d'image secondaire pour "SUR DEVIS"
     };
     
     // Définir les descriptions des formules (Optionnel: pour le texte sous le titre)
     const descriptions = {
-        'basic': 'Idéal pour le démarrage d\'une boutique simple. Intègre le système de catégories/produits.',
-        'premium': 'Le pack le plus populaire. Intègre toutes les fonctionnalités de base + le panier et un design avancé.',
-        'ultra-full': 'Solution tout-en-un sur mesure. Accès à toutes les fonctionnalités et au développement personnalisé (ex: message pré-fait).',
-        'sur-devis': 'Pour les projets spécifiques, complexes ou les besoins n’entrant pas dans les packs standards.'
+        'basic': '🥉 Idéal pour le démarrage d\'une boutique simple. 🥉 <br><br> Intègre le système de catégories/produits.',
+        'premium': '🥈 Le pack le plus populaire. 🥈 <br><br> Intègre toutes les fonctionnalités de base + le panier et un design avancé.',
+        'ultra-full': '🥇 Solution tout-en-un sur mesure.  🥇 <br><br> Accès à toutes les fonctionnalités et au développement personnalisé (ex: message pré-fait).',
+        'sur-devis': '🏅 Pour les projets spécifiques, complexes ou les besoins n’entrant pas dans les packs standards. 🏅'
     };
 
     const formulaName = formulaKey.toUpperCase().replace('-', ' ');
 
+    // Construction du bloc de la deuxième image si elle existe
+    let secondImageHTML = '';
+    const detailImageUrl = details[formulaKey];
+    
+    if (detailImageUrl) {
+        secondImageHTML = `
+            <h5 style="color: var(--tg-theme-link-color); margin-top: 20px;">Détails & Exemples</h5>
+            <img src="${detailImageUrl}" 
+                 alt="Détails ${formulaName}" 
+                 style="width: 100%; height: 48vh; object-fit: cover; border-radius: 10px; cursor: pointer; margin-top: 10px;"
+                 onclick="window.open('${detailImageUrl}', '_blank')">
+        `;
+    }
+
+
     if (flyers[formulaKey]) {
         flyerDisplay.innerHTML = `
             <div style="background-color: var(--tg-theme-secondary-bg-color); padding: 15px; border-radius: 10px;">
-                <h4 style="color: var(--tg-theme-link-color)">Détail du ${formulaName}</h4>
-                <p style="color: var(--tg-theme-text-color); font-size: 0.9em;">${descriptions[formulaKey] || ''}</p>
-                <img id="current-flyer-img" src="${flyers[formulaKey]}" alt="Flyer ${formulaName}" style="width: 100%; border-radius: 10px; max-height: 60vh; object-fit: contain; cursor: pointer; margin-top: 10px;">
+                <h4 style="color: var(--tg-theme-link-color)">ⓘ Détail du ${formulaName} ⓘ</h4>
+                <p style="color: var(--tg-theme-text-color); font-size: 12px;">${descriptions[formulaKey] || ''}</p>
+                
+                <img id="current-flyer-img" 
+                     src="${flyers[formulaKey]}" 
+                     alt="Flyer ${formulaName}" 
+                     style="width: 100%; height: 40vh; object-fit: contain; border-radius: 10px; cursor: pointer; margin-top: 10px;">
+                
+                ${secondImageHTML}
+                
             </div>
         `;
-        // Ré-attache la fonction pour ouvrir en grand
+        // Ré-attache la fonction pour ouvrir en grand (Première image)
         document.getElementById('current-flyer-img').addEventListener('click', () => {
              window.open(flyers[formulaKey], '_blank'); 
         });

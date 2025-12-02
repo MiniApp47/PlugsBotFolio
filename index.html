@@ -171,7 +171,7 @@
     background: linear-gradient(179deg, grey, #0000008c);
     padding: 2vh;
     border-radius: 20px;
-    color: black;
+    color: #a6d4ec;
     text-align: center;
 }
 
@@ -279,6 +279,9 @@
 
         .badge-ultrafull {
             background-color: #e91e63;
+        }
+        .badge-surdevis {
+            background-color: #00ffc7;
         }
 
         .PageFonctionnalite {
@@ -415,12 +418,7 @@
 
             /* Styles pour l'effet "Carte" */
             border-radius: 12px;
-            /* Coins plus arrondis */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Bordure très fine et claire */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5),
-                /* Ombre sombre en bas */
-                0 0 10px rgba(0, 0, 0, 0.2) inset;
+            box-shadow: 0px 0px 5px 2px #375cd0;
             /* Ombre interne subtile */
             transition: transform 0.2s, box-shadow 0.2s;
         }
@@ -581,10 +579,10 @@
 
                 <div class="feature-block">
                     <h3> 👋 Message de bienvenue</h3>
+                    <span>A partir du :</span>
                     <span class="formula-badge badge-basic">PACK BASIC</span>
-                    <p>Intégration de visuels, boutons en ligne et utilisation stratégique des emojis pour une interface
-                        utilisateur professionnelle.</p>
-                        <p>➡️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('Start.mp4', event)" style="color: black; font-weight: bold;">
+                    <p>Votre menu /Start dans Telegram. Personnalisés avec vos liens, vos informations et tout ce qui vous passerais par la tete.</p>
+                        <p>⬇️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('Start.mp4', event)" style="color: #9000ff; font-weight: bold;">
                             Regarder la vidéo
                         </a>
                     </p>
@@ -592,23 +590,13 @@
                         </div>
                 </div>
 
+                 
                 <div class="feature-block">
-                    <h3>🛒 Le Panier </h3>
-                    <span class="formula-badge badge-ultrafull">PACK ULTRA-FULL</span>
-                    <p>Système de panier avancé, permettant aux utilisateurs d'ajouter/retirer des articles.</p>
-                            <p>➡️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('Panier.mp4', event)" style="color: black; font-weight: bold;">
-                                Regarder la vidéo
-                            </a>
-                        </p>
-                        <div id="video-player-Panier" class="video-container" style="display: none; margin-top: 15px;">
-                            </div>
-                </div>
-    
-                <div class="feature-block">
-                    <h3>📂 Gestion Catégories/Sous-Catégories</h3>
+                    <h3>📂 Catégories/Sous-Catégories</h3>
+                    <span>A partir du :</span>
                     <span class="formula-badge badge-premium">PACK PREMIUM</span>
                     <p>Structurez votre catalogue de produits sur plusieurs niveaux pour une navigation intuitive.</p>
-                            <p>➡️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('SubCategorie.mp4', event)" style="color: black; font-weight: bold;">
+                            <p>⬇️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('SubCategorie.mp4', event)" style="color: #9000ff; font-weight: bold;">
                                 Regarder la vidéo
                             </a>
                         </p>
@@ -617,17 +605,42 @@
                 </div>
 
                 <div class="feature-block">
-                    <h3>✨ Design Unique & Ergonomique</h3>
-                    <span class="formula-badge badge-ultrafull">PACK ULTRA-FULL</span>
-                    <p>Structurez votre catalogue de produits sur plusieurs niveaux pour une navigation intuitive.</p>
-                            <p>➡️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('#.mp4', event)" style="color: black; font-weight: bold;">
+                    <h3>🖼️ Fond d'ecran personnalisées</h3>
+                    <span>A partir du :</span>
+                    <span class="formula-badge badge-premium">PACK PREMIUM</span>
+                    <p>Vos fond d'ecran creer par nos equipe de designeur, fait sur mesure pour votre logo.</p>
+                            <p>⬇️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('FondEcran.mp4', event)" style="color: #9000ff; font-weight: bold;">
                                 Regarder la vidéo
                             </a>
                         </p>
-                        <div id="video-player-Start" class="video-container" style="display: none; margin-top: 15px;">
+                        <div id="video-player-FondEcran" class="video-container" style="display: none; margin-top: 15px;">
                             </div>
                 </div>
-    
+                <div class="feature-block">
+                    <h3>🛒 Le Panier </h3>
+                    <span>A partir du :</span>
+                    <span class="formula-badge badge-ultrafull">PACK ULTRA-FULL</span>
+                    <p>Système de panier avancé, permettant aux utilisateurs d'ajouter/retirer des articles.</p>
+                            <p>⬇️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('Panier.mp4', event)" style="color: #9000ff; font-weight: bold;">
+                                Regarder la vidéo
+                            </a>
+                        </p>
+                        <div id="video-player-Panier" class="video-container" style="display: none; margin-top: 15px;">
+                            </div>
+                </div>
+
+                <div class="feature-block">
+                    <h3>✨ Images Unique & Ergonomique</h3>
+                    <span>A partir du :</span>
+                    <span class="formula-badge badge-surdevis"> PACK SUR DEVIS</span>
+                    <p>Images personnalisées pour vos categories et sous-categories.</p>
+                            <p>⬇️ **Démonstration :** <br> <a href="#" onclick="playVideoInApp('ImgPerso.mp4', event)" style="color: #9000ff;  font-weight: bold;">
+                                Regarder la vidéo
+                            </a>
+                        </p>
+                        <div id="video-player-ImgPerso" class="video-container" style="display: none; margin-top: 15px;">
+                            </div>
+                </div>
 
             </div>
            
@@ -651,8 +664,8 @@
                     <div class="caption">🏷️ ALL PRODUCTS 🏷️</div>
                 </div>
                 <div class="carousel-item"
-                    onclick="openImage('https://t.me/CandyKush73Bot')">
-                    <img src="PageRecapOrderCandy.png" alt="Design Client 2">
+                    onclick="openImage('https://t.me/SmockyClub67Bot')">
+                    <img src="CommandeSmocky.jpg" alt="Design Client 2">
                     <div class="caption">📝 COMMANDE CLIENT 📝</div>
                 </div>
                 <div class="carousel-item"
